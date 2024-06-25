@@ -3,12 +3,18 @@ import { Card, Grid, ListItemButton, ListItemText, Checkbox } from '@mui/materia
 import '../component/todos.css';
 
 const Todos = ({ todos, deleteTodo }) => {
-  const todoList = todos.length ? (
-    todos.map((todo) => {
-      const color = new Date(todo.due) < new Date() ? '#ffcccc' : '#ffffff'; // Set color based on due date
+  const renderTodoList = () => {
+    if (todos.length === 0) {
+      return <p>You have no todo's left</p>;
+    }
+
+    return todos.map((todo) => {
+      const isPastDue = new Date(todo.due) < new Date();
+      const cardColor = isPastDue ? '#ffcccc' : '#ffffff';
+
       return (
         <Grid key={todo.id}>
-          <Card style={{ marginTop: 10, backgroundColor: color }} data-testid={todo.content}>
+          <Card style={{ marginTop: 10, backgroundColor: cardColor }} data-testid={todo.content}>
             <ListItemButton component="a" href="#simple-list">
               <Checkbox
                 style={{ paddingLeft: 0 }}
@@ -20,13 +26,10 @@ const Todos = ({ todos, deleteTodo }) => {
           </Card>
         </Grid>
       );
-    })
-  ) : (
-    <p>You have no todo's left</p>
-  );
+    });
+  };
 
-  return <div className="todoCollection" style={{ padding: '10px' }}>{todoList}</div>;
+  return <div className="todoCollection" style={{ padding: '10px' }}>{renderTodoList()}</div>;
 };
 
 export default Todos;
-

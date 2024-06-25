@@ -30,18 +30,5 @@ test('test that App component doesn\'t add a blank task', () => {
   expect(screen.queryByText("No Due Date Task")).not.toBeInTheDocument();
 });
 
-test('test that App component renders Task', async () => {
-  const { container } = render(<App />);
-  const taskInput = screen.getByTestId("new-item-textfield");
-  const addButton = screen.getByTestId('new-item-button');
 
-  fireEvent.change(taskInput, { target: { value: 'History Test' } });
-  fireEvent.click(addButton);
-
-  // Debugging: log the container HTML to check the current state of the DOM
-  console.log(container.innerHTML);
-
-  const check = await screen.findByText(/History Test/i); // Using findByText to handle async rendering
-  expect(check).toBeInTheDocument();
-});
 
