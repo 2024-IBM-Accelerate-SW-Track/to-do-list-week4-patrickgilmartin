@@ -1,74 +1,60 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-class AddTodo extends Component {
-  constructor() {
-    super();
-    this.state = {
-      content: "",
-      due: null,
-    };
-  }
+const AddTodo = ({ addTodo }) => {
+  const [content, setContent] = useState("");
+  const [due, setDue] = useState(null);
 
-  handleContentChange = (event) => {
-    this.setState({
-      content: event.target.value,
-    });
+  const handleContentChange = (event) => {
+    setContent(event.target.value);
   };
 
-  handleDateChange = (date) => {
-    this.setState({
-      due: date,
-    });
+  const handleDateChange = (date) => {
+    setDue(date);
   };
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { content, due } = this.state;
     if (content.trim() && due) {
-      this.props.addTodo({
+      addTodo({
         content,
         due: new Date(due).toLocaleDateString(),
       });
-      this.setState({
-        content: "",
-        due: null,
-      });
+      setContent("");
+      setDue(null);
     }
   };
 
-  render() {
-    return (
-      <div>
-        <TextField
-          label="Add New Item"
-          variant="outlined"
-          onChange={this.handleContentChange}
-          value={this.state.content}
-          inputProps={{ "data-testid": "new-item-textfield" }}
+  return (
+    <div>
+      <TextField
+        label="Add New Item"
+        variant="outlined"
+        onChange={handleContentChange}
+        value={content}
+        inputProps={{ "data-testid": "new-item-textfield" }}
+      />
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DesktopDatePicker
+          label="Due Date"
+          value={due}
+          onChange={handleDateChange}
+          renderInput={(params) => <TextField {...params} placeholder="MM/DD/YYYY" />}
         />
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DesktopDatePicker
-            label="Due Date"
-            value={this.state.due}
-            onChange={this.handleDateChange}
-            renderInput={(params) => <TextField {...params} placeholder="MM/DD/YYYY" />}
-          />
-        </LocalizationProvider>
-        <Button
-          style={{ marginLeft: "10px" }}
-          onClick={this.handleSubmit}
-          variant="contained"
-          color="primary"
-          data-testid="new-item-button"
-        >
-          Add
-        </Button>
-      </div>
-    );
-  }
-}
+      </LocalizationProvider>
+      <Button
+        style={{ marginLeft: "10px" }}
+        onClick={handleSubmit}
+        variant="contained"
+        color="primary"
+        data-testid="new-item-button"
+      >
+        Add
+      </Button>
+    </div>
+  );
+};
 
 export default AddTodo;

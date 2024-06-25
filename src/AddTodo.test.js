@@ -1,18 +1,5 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { unmountComponentAtNode } from 'react-dom';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
-
-let container = null;
-beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
-
-afterEach(() => {
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
 
 test('test that App component renders Task', () => {
   render(<App />);
