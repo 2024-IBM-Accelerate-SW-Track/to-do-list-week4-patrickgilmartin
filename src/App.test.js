@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor} from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { unmountComponentAtNode } from 'react-dom';
 import App from './App';
 
@@ -47,13 +47,12 @@ test('test that App component doesn\'t add a blank task', () => {
   expect(check).toBeInTheDocument();
 });
 
-
 test('test that App component renders Task', () => {
   render(<App />, container);
   const taskInput = screen.getByTestId("new-item-textfield");
   const addButton = screen.getByTestId('new-item-button');
 
-  fireEvent.change(taskInput.querySelector('input'), { target: { value: 'History Test' } });
+  fireEvent.change(taskInput, { target: { value: 'History Test' } });
 
   waitFor(() => {
     expect(taskInput.value).toBe("History Test");
@@ -72,7 +71,7 @@ test('test that App component renders Task', () => {
   const taskInput = screen.getByTestId("new-item-textfield");
   const addButton = screen.getByTestId('new-item-button');
 
-  fireEvent.change(taskInput.querySelector('input'), { target: { value: 'History Test' } });
+  fireEvent.change(taskInput, { target: { value: 'History Test' } });
 
   waitFor(() => {
     expect(taskInput.value).toBe("History Test");
