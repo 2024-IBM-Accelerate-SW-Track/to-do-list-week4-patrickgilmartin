@@ -1,11 +1,11 @@
-import React from "react";
-import "../component/todos.css";
-import { Card, Grid, ListItemButton, ListItemText, Checkbox } from "@mui/material";
+import React from 'react';
+import { Card, Grid, ListItemButton, ListItemText, Checkbox } from '@mui/material';
+import '../component/todos.css';
 
 const Todos = ({ todos, deleteTodo }) => {
   const todoList = todos.length ? (
     todos.map((todo) => {
-      const color = new Date(todo.due) < new Date() ? "#ffcccc" : "#ffffff"; // Set color based on due date
+      const color = new Date(todo.due) < new Date() ? '#ffcccc' : '#ffffff'; // Set color based on due date
       return (
         <Grid key={todo.id}>
           <Card style={{ marginTop: 10, backgroundColor: color }} data-testid={todo.content}>
@@ -25,7 +25,8 @@ const Todos = ({ todos, deleteTodo }) => {
     <p>You have no todo's left</p>
   );
 
-  return <div className="todoCollection" style={{ padding: "10px" }}>{todoList}</div>;
+  return <div className="todoCollection" style={{ padding: '10px' }}>{todoList}</div>;
 };
 
 export default Todos;
+
