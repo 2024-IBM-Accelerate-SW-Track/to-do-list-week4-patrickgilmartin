@@ -7,13 +7,13 @@ export default class About extends Component {
     return (
       <div>
         {/* <p>Design your About me page </p> */}
-        <div class="split left">
+        <div className="split left">
           <div className="centered">
             <img
               className="profile_image"
               src={profile_pic}
               alt="Profile Pic"
-            ></img>
+            />
           </div>
         </div>
         <div className="split right">
