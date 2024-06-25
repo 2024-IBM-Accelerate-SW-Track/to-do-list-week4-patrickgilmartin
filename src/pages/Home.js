@@ -11,7 +11,7 @@ class Home extends Component {
     };
   }
 
-  // The deleteTodo function
+  
   deleteTodo = (id) => {
     const todos = this.state.todos.filter((todo) => {
       return todo.id !== id;
@@ -21,7 +21,7 @@ class Home extends Component {
     });
   };
 
-  // The addTodo function
+
   addTodo = (todo) => {
     const exists = this.state.todos.find((t) => t.content === todo.content);
     if (exists) return;

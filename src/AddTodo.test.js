@@ -72,14 +72,14 @@ test('Late Tasks have Different Colors', () => {
   const inputDate = screen.getByPlaceholderText('mm/dd/yyyy');
   const addButton = screen.getByRole('button', { name: /Add/i });
   const task = 'Overdue Task';
-  const dueDate = '01/01/2020'; // Past date
+  const dueDate = '01/01/2020'; 
 
   fireEvent.change(inputTask, { target: { value: task } });
   fireEvent.change(inputDate, { target: { value: dueDate } });
   fireEvent.click(addButton);
 
   const taskCard = screen.getByTestId(new RegExp(task, 'i'));
-  expect(taskCard).toHaveStyle('background-color: rgb(255, 204, 204)'); // #ffcccc in RGB
+  expect(taskCard).toHaveStyle('background-color: rgb(255, 204, 204)'); 
 });
 
 

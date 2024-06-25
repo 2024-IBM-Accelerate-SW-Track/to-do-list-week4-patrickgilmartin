@@ -9,7 +9,7 @@ class AddTodo extends Component {
     super();
     this.state = {
       content: "",
-      due: null, // Initialize due date to null
+      due: null, 
     };
   }
 
