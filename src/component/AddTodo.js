@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { format } from 'date-fns'; // Import format from date-fns
 
 const AddTodo = ({ addTodo }) => {
   const [content, setContent] = useState('');
@@ -20,7 +21,7 @@ const AddTodo = ({ addTodo }) => {
     if (content.trim() && due) {
       addTodo({
         content,
-        due: due.toLocaleDateString(),
+        due: format(due, 'MM/dd/yyyy'), // Format date explicitly
       });
       setContent('');
       setDue(null);
