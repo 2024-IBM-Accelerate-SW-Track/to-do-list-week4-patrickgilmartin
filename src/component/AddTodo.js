@@ -54,7 +54,7 @@ class AddTodo extends Component {
             label="Due Date"
             value={this.state.due}
             onChange={this.handleDateChange}
-            slotProps={{ textField: { placeholder: 'MM/DD/YYYY' } }}
+            renderInput={(params) => <TextField {...params} placeholder="MM/DD/YYYY" />}
           />
         </LocalizationProvider>
         <Button
@@ -72,3 +72,4 @@ class AddTodo extends Component {
 }
 
 export default AddTodo;
+
