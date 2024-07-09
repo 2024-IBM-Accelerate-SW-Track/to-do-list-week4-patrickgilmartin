@@ -1,6 +1,16 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
+import Axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
+
+// Create a mock adapter instance
+const mock = new MockAdapter(Axios);
+
+// Mock the POST request to /add/item
+mock.onPost('http://localhost:3001/add/item').reply(200, {
+  message: 'Item added'
+});
 
 test('test that App component renders Task', () => {
   render(<App />);
@@ -19,7 +29,6 @@ test('test that App component renders Task', () => {
   expect(check).toBeInTheDocument();
   expect(checkDate).toBeInTheDocument();
 });
-
 
 test('No duplicate task', () => {
   render(<App />);
@@ -81,8 +90,6 @@ test('Late Tasks have Different Colors', () => {
   const taskCard = screen.getByTestId(new RegExp(task, 'i'));
   expect(taskCard).toHaveStyle('background-color: rgb(255, 204, 204)'); 
 });
-
-
 
 test('Delete Task', () => {
   render(<App />);
