@@ -59,7 +59,6 @@ class AddTodo extends Component {
     }
 };
 
-
   render() {
     return (
       <div>
