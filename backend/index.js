@@ -1,9 +1,9 @@
 const express = require("express");
-const app = express();
-const port = process.env.PORT || 3001;
 const cors = require("cors");
 const bodyParser = require('body-parser');
 const fs = require("fs").promises;
+const app = express();
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(bodyParser.json({ extended: true }));
@@ -14,14 +14,12 @@ app.get("/", (req, res) => {
     res.send({ message: "Connected to Backend server!" });
 });
 
-app.post("/add/item", addItem);
-
-async function addItem(request, response) {
+app.post("/add/item", async (req, res) => {
     try {
-        const id = request.body.jsonObject.id;
-        const task = request.body.jsonObject.task;
-        const curDate = request.body.jsonObject.currentDate;
-        const dueDate = request.body.jsonObject.dueDate;
+        const id = req.body.jsonObject.id;
+        const task = req.body.jsonObject.task;
+        const curDate = req.body.jsonObject.currentDate;
+        const dueDate = req.body.jsonObject.dueDate;
         const newTask = {
             ID: id,
             Task: task,
@@ -34,9 +32,9 @@ async function addItem(request, response) {
         json.push(newTask);
         await fs.writeFile("database.json", JSON.stringify(json));
         console.log('Successfully wrote to file');
-        response.sendStatus(200);
+        res.sendStatus(200);
     } catch (err) {
         console.log("error: ", err);
-        response.sendStatus(500);
+        res.sendStatus(500);
     }
-}
+});
