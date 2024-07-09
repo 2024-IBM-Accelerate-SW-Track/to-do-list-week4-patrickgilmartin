@@ -1,13 +1,6 @@
 name: Autograding Tests
-on:
-  push:
-    branches:
-      - main
-      - master
-  pull_request:
-    branches:
-      - main
-      - master
+
+on: [push, pull_request]
 
 permissions:
   checks: write
@@ -19,24 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        id: npm-test
-        run: npm test
-
-      - name: Autograding Reporter
-        uses: classroom-resources/autograding-grading-reporter@v1
-        env:
-          NPM-TEST_RESULTS: "${{ steps.npm-test.outputs.result }}"
-        with:
-          runners: npm-test
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+    - name: Install dependencies
+      run: npm install
+    - name: Run tests
+      id: npm-test
+      run: npm test
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      with:
+        runners: npm-test
+        token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        NPM-TEST_RESULTS: "${{ steps.npm-test.outputs.result }}"
