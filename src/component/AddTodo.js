@@ -45,8 +45,6 @@ class AddTodo extends Component {
             }
         }).then(res => {
             console.log(res.data.message);
-        }).catch(err => {
-            console.error("Error:", err); // Log error
         });
 
         this.props.addTodo({
@@ -59,7 +57,8 @@ class AddTodo extends Component {
             due: null,
         });
     }
-  };
+};
+
 
   render() {
     return (
