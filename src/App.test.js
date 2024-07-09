@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
@@ -31,28 +30,3 @@ test('test that App component doesn\'t add a blank task', () => {
   expect(screen.queryByText("No Due Date Task")).not.toBeInTheDocument();
 });
 
-
-
-=======
-import { render, screen } from '@testing-library/react';
-import { unmountComponentAtNode } from 'react-dom';
-import App from './App';
-
-let container = null;
-beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
-
-afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
-
-test('test that App component renders', () => {
-  render(<App />, container);
- });
->>>>>>> 6c174a370c08c86a2581337c2cea2fc9edbe9de3
