@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import React, { Component } from "react";
-import {Navbar, Nav, Container} from 'react-bootstrap'
+import {Navbar, Nav, NavDropdown, Container} from 'react-bootstrap';
 
 import {
     BrowserRouter as Router,
     Routes,
     Route, 
     Link
-} from "react-router-dom"
+} from "react-router-dom";
 import About from "../../pages/About";
 import Home from "../../pages/Home";
 
