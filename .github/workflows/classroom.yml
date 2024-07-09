@@ -22,7 +22,9 @@ jobs:
       run: npm install
     - name: Run tests
       id: npm-test
-      run: npm test
+      run: |
+        npm test > test-result.log
+        echo "::set-output name=result::$(cat test-result.log)"
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       with:
