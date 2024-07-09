@@ -5,7 +5,6 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { format } from 'date-fns';
 import Axios from "axios";
 
-
 class AddTodo extends Component {
   constructor() {
     super();
@@ -58,8 +57,7 @@ class AddTodo extends Component {
             due: null,
         });
     }
-};
-
+  };
 
   render() {
     return (
